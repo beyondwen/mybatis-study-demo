@@ -9,7 +9,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.List;
 
 public class MybatisTest {
 
@@ -20,10 +19,17 @@ public class MybatisTest {
         SqlSessionFactory build = new SqlSessionFactoryBuilder().build(reader);
         SqlSession sqlSession = build.openSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        List<User> allUser = mapper.findAllUser();
-        User byUserId = mapper.findByUserId(1L);
-        System.out.println(allUser);
+        //List<User> allUser = mapper.findAllUser();
+        User byUserId = mapper.findByUserId(26L);
+        User user = new User();
+        user.setId(26L);
+        user.setUsername("test");
+        user.setPassword("test");
+        mapper.updateUser(user);
+        User byUserId1 = mapper.findByUserId(26L);
+        //System.out.println(allUser);
         System.out.println("======");
         System.out.println(byUserId);
+        System.out.println(byUserId1);
     }
 }

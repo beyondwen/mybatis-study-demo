@@ -8,5 +8,9 @@
         select * from user where id =#{id}
     </select>
 
+    <update id="updateUser" parameterType="com.wenhao.mybatisstudydemo.enity.User">
+        update user SET username=#{user.username}, password=#{user.password} where id =#{user.id}
+    </update>
+
 
 </mapper>

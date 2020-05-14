@@ -14,12 +14,16 @@ import java.util.List;
 public class MybatisTest {
 
     public static void main(String[] args) throws IOException {
+        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
         String resource = "mybatis-config.xml";
         Reader reader = Resources.getResourceAsReader(resource);
         SqlSessionFactory build = new SqlSessionFactoryBuilder().build(reader);
         SqlSession sqlSession = build.openSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         List<User> allUser = mapper.findAllUser();
+        User byUserId = mapper.findByUserId(1L);
         System.out.println(allUser);
+        System.out.println("======");
+        System.out.println(byUserId);
     }
 }

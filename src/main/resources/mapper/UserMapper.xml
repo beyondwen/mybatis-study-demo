@@ -4,4 +4,9 @@
     <select id="findAllUser" resultType="com.wenhao.mybatisstudydemo.enity.User">
         select * from user
     </select>
+    <select id="findByUserId" parameterType="java.lang.Long" resultType="com.wenhao.mybatisstudydemo.enity.User">
+        select * from user where id =#{id}
+    </select>
+
+
 </mapper>

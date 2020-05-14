@@ -13,20 +13,23 @@ import java.io.Reader;
 public class MybatisTest {
 
     public static void main(String[] args) throws IOException {
-        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
+        //System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
         String resource = "mybatis-config.xml";
         Reader reader = Resources.getResourceAsReader(resource);
         SqlSessionFactory build = new SqlSessionFactoryBuilder().build(reader);
-        SqlSession sqlSession = build.openSession();
-        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        SqlSession sqlSession1 = build.openSession();
+        UserMapper mapper = sqlSession1.getMapper(UserMapper.class);
         //List<User> allUser = mapper.findAllUser();
-        User byUserId = mapper.findByUserId(26L);
-        User user = new User();
+        User byUserId = mapper.findByUserId(1L);
+        sqlSession1.close();
+       /* User user = new User();
         user.setId(26L);
         user.setUsername("test");
         user.setPassword("test");
-        mapper.updateUser(user);
-        User byUserId1 = mapper.findByUserId(26L);
+        mapper.updateUser(user);*/
+        SqlSession sqlSession2 = build.openSession();
+        UserMapper mapper1 = sqlSession2.getMapper(UserMapper.class);
+        User byUserId1 = mapper1.findByUserId(1L);
         //System.out.println(allUser);
         System.out.println("======");
         System.out.println(byUserId);

@@ -12,5 +12,5 @@
         update user SET username=#{user.username}, password=#{user.password} where id =#{user.id}
     </update>
 
-
+    <cache eviction="LRU" type="com.wenhao.mybatisstudydemo.cache.MybatisRedisCache"/>
 </mapper>
